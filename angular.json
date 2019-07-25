@@ -1,0 +1,376 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "micro-frontend-todo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "todo",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/micro-frontend-todo",
+            "index": "src/index.html",
+            "main": "src/main.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.app.json",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": [
+              {
+                "input": "node_modules/document-register-element/build/document-register-element.js"
+              },
+              "dist/elements/create-todo.js",
+              "dist/elements/view-todo.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "micro-frontend-todo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "micro-frontend-todo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "micro-frontend-todo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
+            "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "e2e/protractor.conf.js",
+            "devServerTarget": "micro-frontend-todo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "micro-frontend-todo:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "create-todo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/create-todo",
+      "sourceRoot": "projects/create-todo/src",
+      "prefix": "create",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "outputPath": "dist/create-todo",
+            "index": "projects/create-todo/src/index.html",
+            "main": "projects/create-todo/src/main.ts",
+            "polyfills": "projects/create-todo/src/polyfills.ts",
+            "tsConfig": "projects/create-todo/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/create-todo/src/favicon.ico",
+              "projects/create-todo/src/assets"
+            ],
+            "styles": [
+              "projects/create-todo/src/styles.scss"
+            ],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "projects/create-todo/build/extra-webpack.config.js",
+              "mergeStrategies": {
+                "externals": "replace"
+              }
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/create-todo/src/environments/environment.ts",
+                  "with": "projects/create-todo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "create-todo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "create-todo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "create-todo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/create-todo/src/test.ts",
+            "polyfills": "projects/create-todo/src/polyfills.ts",
+            "tsConfig": "projects/create-todo/tsconfig.spec.json",
+            "karmaConfig": "projects/create-todo/karma.conf.js",
+            "assets": [
+              "projects/create-todo/src/favicon.ico",
+              "projects/create-todo/src/assets"
+            ],
+            "styles": [
+              "projects/create-todo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/create-todo/tsconfig.app.json",
+              "projects/create-todo/tsconfig.spec.json",
+              "projects/create-todo/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/create-todo/e2e/protractor.conf.js",
+            "devServerTarget": "create-todo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "create-todo:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "view-todo": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/view-todo",
+      "sourceRoot": "projects/view-todo/src",
+      "prefix": "view",
+      "architect": {
+        "build": {
+          "builder": "@angular-builders/custom-webpack:browser",
+          "options": {
+            "outputPath": "dist/view-todo",
+            "index": "projects/view-todo/src/index.html",
+            "main": "projects/view-todo/src/main.ts",
+            "polyfills": "projects/view-todo/src/polyfills.ts",
+            "tsConfig": "projects/view-todo/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/view-todo/src/favicon.ico",
+              "projects/view-todo/src/assets"
+            ],
+            "styles": [
+              "projects/view-todo/src/styles.scss"
+            ],
+            "scripts": [],
+            "customWebpackConfig": {
+              "path": "projects/view-todo/build/extra-webpack.config.js",
+              "mergeStrategies": {
+                "externals": "replace"
+              }
+            }
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/view-todo/src/environments/environment.ts",
+                  "with": "projects/view-todo/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "view-todo:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "view-todo:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "view-todo:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/view-todo/src/test.ts",
+            "polyfills": "projects/view-todo/src/polyfills.ts",
+            "tsConfig": "projects/view-todo/tsconfig.spec.json",
+            "karmaConfig": "projects/view-todo/karma.conf.js",
+            "assets": [
+              "projects/view-todo/src/favicon.ico",
+              "projects/view-todo/src/assets"
+            ],
+            "styles": [
+              "projects/view-todo/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/view-todo/tsconfig.app.json",
+              "projects/view-todo/tsconfig.spec.json",
+              "projects/view-todo/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/view-todo/e2e/protractor.conf.js",
+            "devServerTarget": "view-todo:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "view-todo:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "micro-frontend-todo"
+}
