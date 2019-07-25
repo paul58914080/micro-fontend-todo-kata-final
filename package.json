@@ -11,12 +11,10 @@
     "mock:server": "json-server --watch mock-data.json",
     "start:proxy": "ng serve --prod --proxy-config proxy.conf.json",
     "start:proxy:mock:server": "concurrently --kill-others 'npm run mock:server' 'npm run start:proxy'",
-
     "start:create:proxy": "ng serve create-todo --port=4201 --proxy-config proxy.conf.json",
     "start:proxy:create:server": "npm run start:create:proxy",
     "start:proxy:mock:create:server": "concurrently --kill-others 'npm run mock:server' 'npm run start:create:proxy'",
     "build:create-todo:elements": "ng build create-todo --prod --output-hashing none && node projects/create-todo/build/bundle.js",
-
     "start:view:proxy": "ng serve view-todo --port=4202 --proxy-config proxy.conf.json",
     "start:proxy:view:server": "npm run start:view:proxy",
     "start:proxy:mock:view:server": "concurrently --kill-others 'npm run mock:server' 'npm run start:view:proxy'",

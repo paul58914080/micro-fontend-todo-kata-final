@@ -1,1 +1,6 @@
-<h1>create-todo works!</h1>
+<div class='container-fluid todo-create-container'>
+  <form class='row' (ngSubmit)='onSubmit()'>
+    <input type='text' class='w-100 form-control' placeholder='Enter your todo item and press enter'
+           [(ngModel)]='todo' name='todo'/>
+  </form>
+</div>

@@ -1,5 +1,27 @@
-@import url("https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css");
+@import url('https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css');
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200i,300,300i,400,600,700,900');
+$font-family: 'Source Sans Pro', sans-serif;
 
-:host ::ng-deep {
+:host {
 
+  font-family: $font-family;
+  width: 100vw;
+  height: 100vh;
+
+  input {
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+    font-size: 28px;
+    font-weight: 300;
+    &::placeholder {
+      color: #ccc;
+      font-weight: 300;
+    }
+    &:hover, &:focus {
+      outline: none;
+      box-shadow: none;
+      border-bottom: 1px solid;
+    }
+  }
 }
