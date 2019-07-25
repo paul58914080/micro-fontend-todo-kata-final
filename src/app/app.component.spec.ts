@@ -1,6 +1,7 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {LayoutModule} from './layout/layout.module';
+import { LayoutModule } from './layout/layout.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -10,7 +11,8 @@ describe('AppComponent', () => {
       ],
       imports: [
         LayoutModule
-      ]
+      ],
+      schemas: [CUSTOM_ELEMENTS_SCHEMA]
     }).compileComponents();
   }));
 
