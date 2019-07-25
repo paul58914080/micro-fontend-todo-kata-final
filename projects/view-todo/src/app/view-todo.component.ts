@@ -70,12 +70,14 @@ export class ViewTodoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     // remove listener of the create-todo-element
     const createTodoEl = document.querySelector('create-todo-element');
-    createTodoEl.removeEventListener('created', this.created);
+    if (createTodoEl) {
+      createTodoEl.removeEventListener('created', this.created);
+    }
   }
 
   created = () => {
     this.actionChanged(this.selectedAction);
-  };
+  }
 }
 
 enum Actions {
