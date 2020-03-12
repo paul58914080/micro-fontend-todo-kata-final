@@ -5,7 +5,6 @@ import { Todo } from './todo';
 import { CreateTodoService } from './create-todo.service';
 
 describe('CreateTodoService', () => {
-  let httpClientSpy: { get: jasmine.Spy };
   let todoCreateService: CreateTodoService;
   let httpMock: HttpTestingController;
 
@@ -16,9 +15,8 @@ describe('CreateTodoService', () => {
   );
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    todoCreateService = TestBed.get(CreateTodoService);
-    httpMock = TestBed.get(HttpTestingController);
+    todoCreateService = TestBed.inject(CreateTodoService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {

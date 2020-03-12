@@ -1,5 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {ViewTodoComponent} from '../../../projects/view-todo/src/app/view-todo.component';
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'todo-home',
@@ -8,16 +7,12 @@ import {ViewTodoComponent} from '../../../projects/view-todo/src/app/view-todo.c
 })
 export class HomeComponent implements OnInit {
 
-  loadElement = false;
-  @ViewChild(ViewTodoComponent, { static: false }) view: ViewTodoComponent;
+  loadElements = true;
 
-  constructor() { }
-
-  ngOnInit() {
-    this.loadElement = false;
+  constructor() {
   }
 
-  created() {
-    this.view.actionChanged(this.view.selectedAction);
+  ngOnInit(): void {
   }
+
 }

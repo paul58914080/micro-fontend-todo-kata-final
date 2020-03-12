@@ -1,10 +1,14 @@
-
 {
   "todo": [
     {
       "id": 1,
-      "title": "Attend Societe Generale's codejam at coworks",
+      "title": "Attend Societe Generale's codejam",
       "completed": false
+    },
+    {
+      "completed": false,
+      "title": "test",
+      "id": 2
     }
   ]
 }

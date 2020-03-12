@@ -7,11 +7,10 @@ describe('ViewTodoService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ViewTodoService = TestBed.get(ViewTodoService);
+    const service: ViewTodoService = TestBed.inject(ViewTodoService);
     expect(service).toBeTruthy();
   });
 
-  let httpClientSpy: { get: jasmine.Spy };
   let todoViewService: ViewTodoService;
   let httpMock: HttpTestingController;
 
@@ -22,9 +21,8 @@ describe('ViewTodoService', () => {
   );
 
   beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient', ['get']);
-    todoViewService = TestBed.get(ViewTodoService);
-    httpMock = TestBed.get(HttpTestingController);
+    todoViewService = TestBed.inject(ViewTodoService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   it('should be created', () => {

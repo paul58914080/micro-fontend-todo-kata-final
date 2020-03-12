@@ -22,6 +22,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -32,7 +33,9 @@
             "scripts": [
               {
                 "input": "node_modules/document-register-element/build/document-register-element.js"
-              }
+              },
+              "dist/elements/create-todo.js",
+              "dist/elements/view-todo.js"
             ]
           },
           "configurations": {
@@ -48,7 +51,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -57,6 +59,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -142,7 +149,7 @@
             "main": "projects/create-todo/src/main.ts",
             "polyfills": "projects/create-todo/src/polyfills.ts",
             "tsConfig": "projects/create-todo/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/create-todo/src/favicon.ico",
               "projects/create-todo/src/assets"
@@ -171,7 +178,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -180,6 +186,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -265,7 +276,7 @@
             "main": "projects/view-todo/src/main.ts",
             "polyfills": "projects/view-todo/src/polyfills.ts",
             "tsConfig": "projects/view-todo/tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "projects/view-todo/src/favicon.ico",
               "projects/view-todo/src/assets"
@@ -294,7 +305,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -303,6 +313,11 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
                 }
               ]
             }
@@ -368,7 +383,6 @@
           }
         }
       }
-    }
-  },
+    }},
   "defaultProject": "micro-frontend-todo"
 }

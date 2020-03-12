@@ -1,15 +1,13 @@
-<button class='btn btn-primary' (click)='loadElement = !loadElement'>Toggle as {{loadElement ? 'direct module': 'element'}}</button>
-<div class="container-fluid" style="margin-top: 30px">
-  <div *ngIf='!loadElement'>
-    <create-todo (created)="created()"></create-todo>
-  </div>
-  <div *ngIf='loadElement'>
-    <create-todo-element></create-todo-element>
-  </div>
-  <div *ngIf='!loadElement'>
+<div class='container-fluid'>
+  <div *ngIf="!loadElements">
+    <h3>Angular components</h3>
+    <create-todo></create-todo>
     <view-todo></view-todo>
   </div>
-  <div *ngIf='loadElement'>
+  <!-- As elements -->
+  <div *ngIf="loadElements">
+    <h3>Web components</h3>
+    <create-todo-element></create-todo-element>
     <view-todo-element></view-todo-element>
   </div>
 </div>
